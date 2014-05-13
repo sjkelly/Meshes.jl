@@ -30,4 +30,4 @@ function merge(m1::AbstractMesh, m2::AbstractMesh)
     Mesh(append!(v1,v2),append!(f1,newF2))
 end
 
-export Vertex, Face, AbstrctMesh, Mesh, vertices, faces, merge
+export Vertex, Face, AbstractMesh, Mesh, vertices, faces, merge
