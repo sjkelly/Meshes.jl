@@ -15,9 +15,7 @@ distance = distance + sigma*rand(2*N+1,2*N+1,2*N+1)
 #
 lambda = N-2*sigma # isovalue
 
-tic()
-msh = isosurface(distance,lambda)
-toc()
+@time msh = isosurface(distance,lambda)
 
 # Simplify the mesh
 #
@@ -38,7 +36,6 @@ function testUnionNotInterection()
 	# 
 	# http://en.wikipedia.org/wiki/Constructive_solid_geometry
 
-	tic()	
 	# volume of interest
 	x_min, x_max = -1, 15
 	y_min, y_max = -1, 5
@@ -59,13 +56,11 @@ function testUnionNotInterection()
 	vol = volume(f, x_min,y_min,z_min,x_max,y_max,z_max, scale)
 	msh = isosurface(vol, 0.0)
 	exportToStl(msh, "wiki_csg.stl")
-	toc()
 end
-testUnionNotInterection()
+@time testUnionNotInterection()
 
 
 function testCylinders()
-	tic()
 	c1(x,y,z) = cylinderX(x,y,z, 0,0,1,-2,4)
 	c2(x,y,z) = cylinderY(x,y,z, 0,0,1,-2,4)
 	c3(x,y,z) = cylinderZ(x,y,z, 0,0,1,-2,4)
@@ -74,6 +69,5 @@ function testCylinders()
 	vol = volume(f, -3,-3,-3, 5,5,5, 2)
 	msh = isosurface(vol, 0.0)
 	exportToStl(msh, "cylinders_test.stl")
-	toc()
 end
-testCylinders()
+@time testCylinders()
